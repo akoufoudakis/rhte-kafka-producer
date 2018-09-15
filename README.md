@@ -18,6 +18,6 @@ $ sh create-topics.sh
 3. Set the application properties to the correct values including the numberofCreditCard you want the producer to generate
 4. run the application using the spring boot mvn plugin
 ```sh
-$ [rhte-kafka-producer]$ mvn spring-boot:run
+[rhte-kafka-producer]$ mvn spring-boot:run
 ```
 # To run it on OCP
