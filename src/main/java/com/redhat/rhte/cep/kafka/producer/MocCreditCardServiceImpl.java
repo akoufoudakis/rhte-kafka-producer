@@ -3,6 +3,7 @@ package com.redhat.rhte.cep.kafka.producer;
 import java.util.Date;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.redhat.rhte.cep.kafka.model.CreditCardTransaction;
@@ -10,6 +11,9 @@ import com.redhat.rhte.cep.kafka.model.CreditCardTransaction;
 @Service("mocCreditCardService")
 public class MocCreditCardServiceImpl implements MocCreditCardService {
 
+	@Value("${cc.numberofCreditCards}")
+	Integer numberofCreditCards;
+	
 	static Integer count = 1;
 	static String[] countries = new String[] { "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra",
 			"Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia",
@@ -62,7 +66,7 @@ public class MocCreditCardServiceImpl implements MocCreditCardService {
 	@Override
 	public CreditCardTransaction generateCreditCardTransaction() {
 		Random rand = new Random();
-		String creditCardId = getRandomCreditCard(5);
+		String creditCardId = getRandomCreditCard(numberofCreditCards);
 		String itemPurchased = "Item Purchased for - " + creditCardId;
 		double amount = rand.nextDouble() * 1000;
 		Date purchaseDate = new Date(System.currentTimeMillis());
