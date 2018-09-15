@@ -15,4 +15,8 @@ $ cd rhte-kafka-producer
 $ sh create-topics.sh 
 ```
 2. There is also a shell script to delete the topics just in case they are created before
-3. Create the required topics on your kafka server
+3. Set the application properties to the correct values
+4. run the application using the spring boot mvn plugin
+```sh
+$ [rhte-kafka-producer]$ mvn spring-boot:run
+```
