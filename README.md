@@ -15,8 +15,9 @@ $ cd rhte-kafka-producer
 $ sh create-topics.sh 
 ```
 2. There is also a shell script to delete the topics just in case they are created before
-3. Set the application properties to the correct values
+3. Set the application properties to the correct values including the numberofCreditCard you want the producer to generate
 4. run the application using the spring boot mvn plugin
 ```sh
 $ [rhte-kafka-producer]$ mvn spring-boot:run
 ```
+# To run it on OCP
