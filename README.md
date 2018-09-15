@@ -6,6 +6,7 @@ This is a producer for a FIS/Camel Kafka producer.
 | -------------              |:-------------:|
 | Camel Kafka Component      |  <http://camel.apache.org/kafka.html> |
 |  FIS                       |   <https://access.redhat.com/documentation/en-us/red_hat_fuse/7.1/html/fuse_on_openshift_guide/>      |
+| Strimzi             | <http://strimzi.io/> |
 
 
 # To run it locally (Not on OCP)
