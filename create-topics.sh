@@ -11,3 +11,6 @@ for topic in ${topics}; do
      echo "attempting to create topic ${topic}"
      ${KAFKA_HOME}/bin/kafka-topics.sh --create --topic ${topic} --partitions 20 --replication-factor 1 --zookeeper ${ZK_HOST}:${ZK_PORT}
 done
+
+
+
