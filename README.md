@@ -48,3 +48,33 @@ $ oc new-project MY_PROJECT_NAME
 ```sh
 $ mvn clean -DskipTests fabric8:deploy -Popenshift
 ```
+## Configure Strimzi ##
+1- Download strimzi and replace the namespace with the correct project name
+sed -i 's/namespace: .*/namespace: cep-demo/' examples/install/cluster-operator/*ClusterRoleBinding*.yaml
+
+2- logic and create the target proeject 
+```sh
+$ oc login -u username -p password
+$ oc new-project cep-demo
+```
+3- Deploying the Kafka crt to cluster
+```sh
+oc create -f examples/install/cluster-operator
+oc create -f examples/templates/cluster-operator
+```
+  1- Check everything is OK
+```sh
+oc get kafka
+oc describe kafka my-cluster
+```
+
+ 2- deploy the kafka cluster
+```sh
+oc apply -f examples/kafka/kafka-persistent.yaml
+```
+## Configure Topics ##
+* Copy and run the creation script to one of the kafka cluster pods
+```sh
+oc cp create-topics-ocp.sh my-cluster-kafka-0:/tmp/create-topics-ocp.sh -c kafka
+oc exec my-cluster-kafka-0 -c kafka -- sh  /tmp/create-topics-ocp.sh 
+```
