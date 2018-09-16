@@ -2,6 +2,7 @@ package com.redhat.rhte.cep.kafka.producer;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,8 +12,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class CamelRouter extends RouteBuilder {
 
+	@Value("${producer.topic}")
+	private String producerTopic;
+	
+	
+	@Value("${camel.component.kafka.brokers}")
+	private String kafkaBrokers;
+	
 	@Override
 	public void configure() throws Exception {
+System.out.println("producerTopic==="+producerTopic);
+System.out.println("kafkaBrokers==="+kafkaBrokers);
 
 		// @formatter:off
 		restConfiguration().apiContextPath("/api-doc").apiProperty("api.title", "Greeting REST API")
@@ -23,8 +33,8 @@ public class CamelRouter extends RouteBuilder {
 
 		from("timer://msgTimer?fixedRate=true&period=60").to("bean:mocCreditCardService?method=generateCreditCardTransaction")
 			.routeId("ToKafka")
-			.to("kafka:{{producer.topic}}"
-					+"?serializerClass=com.redhat.rhte.cep.kafka.utils.serializer.JsonSerializer"
+			.to("kafka:"+kafkaBrokers+"?topic="+producerTopic
+					+"&serializerClass=com.redhat.rhte.cep.kafka.utils.serializer.JsonSerializer"
 					/*+"&partitioner=com.redhat.rhte.cep.kafka.utils.CreditCardTransactionPartitioner"*/)
 			.log("${body}")/*.log("${headers}")*/;
 
