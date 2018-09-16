@@ -75,8 +75,8 @@ oc apply -f examples/kafka/kafka-persistent.yaml
 ## Configure Topics ##
 * Copy and run the creation script to one of the kafka cluster pods
 ```sh
-oc cp create-topics-ocp.sh my-cluster-kafka-0:/tmp/create-topics-ocp.sh -c kafka
-oc exec my-cluster-kafka-0 -c kafka -- sh  /tmp/create-topics-ocp.sh 
+[rhte-kafka-producer]$ oc cp create-topics-ocp.sh my-cluster-kafka-0:/tmp/create-topics-ocp.sh -c kafka
+[rhte-kafka-producer]$ oc exec my-cluster-kafka-0 -c kafka -- sh  /tmp/create-topics-ocp.sh 
 ```
 ## Deploy Application ##
 ```sh
