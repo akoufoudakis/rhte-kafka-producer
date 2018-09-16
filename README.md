@@ -78,3 +78,7 @@ oc apply -f examples/kafka/kafka-persistent.yaml
 oc cp create-topics-ocp.sh my-cluster-kafka-0:/tmp/create-topics-ocp.sh -c kafka
 oc exec my-cluster-kafka-0 -c kafka -- sh  /tmp/create-topics-ocp.sh 
 ```
+## Deploy Application ##
+```sh
+[rhte-kafka-producer]$ mvn clean -DskipTests fabric8:deploy -Popenshift
+```
