@@ -21,8 +21,6 @@ public class CamelRouter extends RouteBuilder {
 	
 	@Override
 	public void configure() throws Exception {
-System.out.println("producerTopic==="+producerTopic);
-System.out.println("kafkaBrokers==="+kafkaBrokers);
 
 		// @formatter:off
 		restConfiguration().apiContextPath("/api-doc").apiProperty("api.title", "Greeting REST API")
