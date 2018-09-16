@@ -193,6 +193,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${spring-boot.version}</version>
 				<configuration>
+					<profiles>local</profiles>
 					<classifier>exec</classifier>
 				</configuration>
 				<executions>
@@ -251,9 +252,6 @@
 	<profiles>
 		<profile>
 			<id>openshift</id>
-			<properties>
-				<spring.profiles.active>openshift</spring.profiles.active>
-			</properties>
 			<build>
 				<plugins>
 					<plugin>

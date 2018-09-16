@@ -33,10 +33,15 @@ System.out.println("kafkaBrokers==="+kafkaBrokers);
 
 		from("timer://msgTimer?fixedRate=true&period=60").to("bean:mocCreditCardService?method=generateCreditCardTransaction")
 			.routeId("ToKafka")
-			.to("kafka:"+kafkaBrokers+"?topic="+producerTopic
-					+"&serializerClass=com.redhat.rhte.cep.kafka.utils.serializer.JsonSerializer"
+			.to("kafka:{{producer.topic}}"
+					+"?serializerClass=com.redhat.rhte.cep.kafka.utils.serializer.JsonSerializer"
 					/*+"&partitioner=com.redhat.rhte.cep.kafka.utils.CreditCardTransactionPartitioner"*/)
 			.log("${body}")/*.log("${headers}")*/;
+			
+			/*.to("kafka:"+kafkaBrokers+"?topic="+producerTopic
+					+"&serializerClass=com.redhat.rhte.cep.kafka.utils.serializer.JsonSerializer"
+					+"&partitioner=com.redhat.rhte.cep.kafka.utils.CreditCardTransactionPartitioner")
+			.log("${body}").log("${headers}");*/
 
 		// @formatter:on
 	}
